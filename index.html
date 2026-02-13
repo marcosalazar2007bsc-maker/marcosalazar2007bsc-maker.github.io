@@ -5,16 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>15 Años Amy</title>
 
+<!-- FUENTE FUTURISTA -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body{
-    font-family:'Segoe UI',sans-serif;
-    background:linear-gradient(180deg,#0f0c29,#302b63,#24243e);
+    font-family:'Orbitron', sans-serif;
+    background: radial-gradient(circle at center, #1a0033 0%, #0a001a 60%, #000 100%);
     color:white;
     overflow:hidden;
 }
 
-/* ===== ESTRELLAS ===== */
+/* ===== FONDO PARTÍCULAS ===== */
+
 canvas{
     position:fixed;
     top:0;
@@ -22,72 +32,81 @@ canvas{
     z-index:-1;
 }
 
-/* ===== CONTENEDOR ===== */
+/* ===== CONTENEDOR PRINCIPAL ===== */
+
 .container{
     display:flex;
     flex-direction:column;
-    align-items:center;
     justify-content:center;
+    align-items:center;
     height:100vh;
     text-align:center;
     padding:20px;
 }
 
-/* ===== NEON ===== */
+/* ===== TITULO NEON ===== */
+
 .neon{
-    font-size:60px;
+    font-size:65px;
+    font-weight:900;
+    background: linear-gradient(90deg,#00ffff,#ff00ff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
     text-shadow:
-        0 0 5px #ff00ff,
-        0 0 10px #ff00ff,
+        0 0 10px #00ffff,
         0 0 20px #ff00ff,
         0 0 40px #ff00ff;
-    animation:blink 2s infinite alternate;
+    animation:flicker 2s infinite alternate;
 }
 
 .nombre{
-    font-size:70px;
-    margin:10px 0;
+    font-size:75px;
+    margin-top:10px;
+    color:#00ffff;
     text-shadow:
-        0 0 5px #00ffff,
-        0 0 10px #00ffff,
-        0 0 20px #00ffff;
+        0 0 15px #00ffff,
+        0 0 30px #00ffff;
 }
 
-@keyframes blink{
+@keyframes flicker{
     from{opacity:1;}
-    to{opacity:0.6;}
+    to{opacity:0.7;}
 }
 
 .fecha{
+    margin-top:20px;
     font-size:18px;
     opacity:0.8;
-    margin-bottom:20px;
 }
 
 /* ===== CONTADOR ===== */
+
 .contador{
     display:flex;
     gap:15px;
-    margin-bottom:30px;
+    margin:30px 0;
 }
 
-.time-box{
-    background:rgba(255,255,255,0.1);
+.box{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(0,255,255,0.4);
     padding:15px;
     border-radius:15px;
-    min-width:60px;
+    min-width:70px;
+    box-shadow:0 0 15px rgba(0,255,255,0.3);
 }
 
-.time-box span{
+.box span{
     font-size:22px;
     font-weight:bold;
 }
 
 /* ===== BOTONES ===== */
+
 .botones{
     display:flex;
     flex-direction:column;
-    gap:12px;
+    gap:15px;
     width:260px;
 }
 
@@ -95,24 +114,29 @@ button{
     padding:14px;
     border:none;
     border-radius:30px;
-    font-size:15px;
+    font-size:14px;
     cursor:pointer;
     transition:0.3s;
+    font-family:'Orbitron';
 }
 
-.btn{background:#ff00ff;color:white;}
-.btn:hover{transform:scale(1.08);}
+.btn{
+    background:linear-gradient(90deg,#00ffff,#ff00ff);
+    color:black;
+    font-weight:bold;
+}
 
-.btn-music{background:#00ffff;color:black;}
+.btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 20px #ff00ff;
+}
 
 /* ===== MODAL ===== */
+
 .modal{
     position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.7);
+    inset:0;
+    background:rgba(0,0,0,0.8);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -121,36 +145,63 @@ button{
     transition:0.3s;
 }
 
-.modal.active{visibility:visible;opacity:1;}
+.modal.active{
+    visibility:visible;
+    opacity:1;
+}
 
 .modal-content{
-    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    background:rgba(0,0,0,0.8);
+    border:1px solid #00ffff;
     padding:30px;
     border-radius:20px;
     width:90%;
     max-width:350px;
+    box-shadow:0 0 25px #00ffff;
 }
 
 input,textarea{
     width:100%;
     padding:10px;
-    margin-bottom:10px;
-    border-radius:15px;
-    border:none;
+    margin-bottom:12px;
+    border-radius:12px;
+    border:1px solid #00ffff;
+    background:black;
+    color:white;
+    font-family:'Orbitron';
 }
 
-.close{background:black;color:white;}
+.close{
+    background:#ff00ff;
+    color:black;
+}
+
+/* ===== BOTÓN MÚSICA ===== */
+
+.music-btn{
+    position:fixed;
+    bottom:20px;
+    left:20px;
+    background:linear-gradient(90deg,#00ffff,#ff00ff);
+    border:none;
+    padding:12px 16px;
+    border-radius:50px;
+    cursor:pointer;
+    font-family:'Orbitron';
+    font-weight:bold;
+}
 
 @media(max-width:500px){
-    .neon{font-size:40px;}
-    .nombre{font-size:50px;}
+    .neon{font-size:45px;}
+    .nombre{font-size:55px;}
 }
+
 </style>
 </head>
 
 <body>
 
-<canvas id="stars"></canvas>
+<canvas id="particles"></canvas>
 
 <div class="container">
 
@@ -158,18 +209,17 @@ input,textarea{
     <div class="nombre">AMY</div>
     <div class="fecha">SÁBADO 21 FEBRERO • 8PM</div>
 
-    <!-- CONTADOR -->
     <div class="contador">
-        <div class="time-box"><span id="dias">0</span><br>Días</div>
-        <div class="time-box"><span id="horas">0</span><br>Horas</div>
-        <div class="time-box"><span id="minutos">0</span><br>Min</div>
-        <div class="time-box"><span id="segundos">0</span><br>Seg</div>
+        <div class="box"><span id="dias"></span><br>DÍAS</div>
+        <div class="box"><span id="horas"></span><br>HORAS</div>
+        <div class="box"><span id="minutos"></span><br>MIN</div>
+        <div class="box"><span id="segundos"></span><br>SEG</div>
     </div>
 
     <div class="botones">
         <button class="btn" onclick="abrirModal()">CONFIRMAR ASISTENCIA</button>
         <button class="btn" onclick="verUbicacion()">VER UBICACIÓN</button>
-        <button class="btn-music" onclick="toggleMusic()">🎵 MÚSICA</button>
+        <button class="btn" onclick="mostrarAvisos()">AVISOS IMPORTANTES</button>
     </div>
 
 </div>
@@ -177,7 +227,7 @@ input,textarea{
 <!-- MODAL -->
 <div class="modal" id="modal">
     <div class="modal-content">
-        <h2>Confirma tu asistencia 💖</h2>
+        <h3>Confirma tu asistencia</h3>
         <input type="text" id="nombre" placeholder="Nombre en la invitación">
         <textarea id="mensaje" placeholder="Mensaje para la quinceañera"></textarea>
         <button class="btn" onclick="enviarWhatsApp()">Enviar</button>
@@ -185,88 +235,81 @@ input,textarea{
     </div>
 </div>
 
+<!-- MUSICA -->
 <audio id="musica" loop>
 <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
+<button class="music-btn" onclick="toggleMusic()">🎵 MÚSICA</button>
+
 <script>
 
-/* ===== CONTADOR ===== */
+/* CONTADOR */
 const evento=new Date("February 21, 2026 20:00:00").getTime();
-
 setInterval(()=>{
     const ahora=new Date().getTime();
-    const diferencia=evento-ahora;
-
-    const dias=Math.floor(diferencia/(1000*60*60*24));
-    const horas=Math.floor((diferencia%(1000*60*60*24))/(1000*60*60));
-    const minutos=Math.floor((diferencia%(1000*60*60))/(1000*60));
-    const segundos=Math.floor((diferencia%(1000*60))/1000);
-
-    document.getElementById("dias").innerHTML=dias;
-    document.getElementById("horas").innerHTML=horas;
-    document.getElementById("minutos").innerHTML=minutos;
-    document.getElementById("segundos").innerHTML=segundos;
+    const d=evento-ahora;
+    document.getElementById("dias").innerHTML=Math.floor(d/(1000*60*60*24));
+    document.getElementById("horas").innerHTML=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+    document.getElementById("minutos").innerHTML=Math.floor((d%(1000*60*60))/(1000*60));
+    document.getElementById("segundos").innerHTML=Math.floor((d%(1000*60))/1000);
 },1000);
 
-/* ===== ESTRELLAS ===== */
-const canvas=document.getElementById("stars");
+/* PARTICULAS */
+const canvas=document.getElementById("particles");
 const ctx=canvas.getContext("2d");
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
 
-let estrellas=[];
-for(let i=0;i<120;i++){
-    estrellas.push({
+let particles=[];
+for(let i=0;i<100;i++){
+    particles.push({
         x:Math.random()*canvas.width,
         y:Math.random()*canvas.height,
         r:Math.random()*2,
-        s:Math.random()*1
+        dx:(Math.random()-0.5)*0.5,
+        dy:(Math.random()-0.5)*0.5
     });
 }
 
-function animar(){
+function animate(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle="white";
-    estrellas.forEach(e=>{
+    ctx.fillStyle="#00ffff";
+    particles.forEach(p=>{
         ctx.beginPath();
-        ctx.arc(e.x,e.y,e.r,0,Math.PI*2);
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
         ctx.fill();
-        e.y+=e.s;
-        if(e.y>canvas.height)e.y=0;
+        p.x+=p.dx;
+        p.y+=p.dy;
     });
-    requestAnimationFrame(animar);
+    requestAnimationFrame(animate);
 }
-animar();
+animate();
 
-/* ===== MODAL ===== */
+/* MODAL */
 function abrirModal(){document.getElementById("modal").classList.add("active");}
 function cerrarModal(){document.getElementById("modal").classList.remove("active");}
 
-/* ===== MAPA ===== */
+/* MAPA */
 function verUbicacion(){
     window.open("https://maps.google.com/?q=Quito,Ecuador","_blank");
 }
 
-/* ===== WHATSAPP ===== */
-function enviarWhatsApp(){
-    let nombre=document.getElementById("nombre").value.trim();
-    let mensajePersonal=document.getElementById("mensaje").value.trim();
-
-    if(nombre===""){alert("Escribe tu nombre");return;}
-
-    let mensaje=`Hola Amy 💖%0AConfirmo mi asistencia ✨%0A`;
-    mensaje+=`Nombre: ${nombre}%0A`;
-
-    if(mensajePersonal!==""){
-        mensaje+=`Mensaje: ${mensajePersonal}`;
-    }
-
-    let url=`https://wa.me/593981811413?text=${mensaje}`;
-    window.open(url,"_blank");
+/* AVISOS */
+function mostrarAvisos(){
+    alert("Dress code elegante 💖\nParqueadero disponible 🚗\nTe esperamos ✨");
 }
 
-/* ===== MUSICA ===== */
+/* WHATSAPP */
+function enviarWhatsApp(){
+    let nombre=document.getElementById("nombre").value.trim();
+    let mensaje=document.getElementById("mensaje").value.trim();
+    if(nombre===""){alert("Escribe tu nombre");return;}
+    let texto=`Hola Amy 💖%0AConfirmo mi asistencia ✨%0ANombre: ${nombre}%0A${mensaje}`;
+    window.open(`https://wa.me/593981811413?text=${texto}`,"_blank");
+}
+
+/* MUSICA */
 let musica=document.getElementById("musica");
 let activo=false;
 function toggleMusic(){
