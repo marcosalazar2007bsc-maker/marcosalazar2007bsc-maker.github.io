@@ -6,138 +6,164 @@
 <title>15 Años Amy</title>
 
 <style>
-body{
+
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg,#6a11cb,#2575fc);
+    background: linear-gradient(135deg,#ff758c,#ff7eb3);
     color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
     text-align:center;
-    overflow-x:hidden;
+    padding:20px;
 }
 
-/* Brillo fondo */
-body::before{
-    content:"";
-    position:fixed;
-    top:0;
-    left:0;
+.container{
+    max-width:500px;
     width:100%;
-    height:100%;
-    background:radial-gradient(circle at 20% 20%,rgba(255,255,255,0.2),transparent),
-               radial-gradient(circle at 80% 80%,rgba(255,255,255,0.2),transparent);
-    z-index:-1;
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(15px);
+    padding:40px 25px;
+    border-radius:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.3);
+    animation:fadeIn 1s ease;
 }
 
-/* Títulos */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
 .titulo{
-    margin-top:70px;
-    font-size:60px;
+    font-size:45px;
+    letter-spacing:3px;
     font-weight:bold;
-    letter-spacing:4px;
 }
 
 .nombre{
-    font-size:70px;
+    font-size:55px;
+    margin:10px 0;
     font-weight:700;
-    color:#ffd1ff;
-    margin-top:-10px;
 }
 
 .fecha{
-    margin-top:20px;
-    font-size:22px;
-    background:rgba(255,255,255,0.15);
-    display:inline-block;
-    padding:10px 25px;
-    border-radius:30px;
+    font-size:18px;
+    margin-bottom:30px;
+    opacity:0.9;
 }
 
-/* Botones */
+/* BOTONES */
+
 .botones{
-    margin-top:50px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
 }
 
 button{
-    background:#ff4da6;
+    padding:15px;
     border:none;
-    padding:15px 30px;
-    margin:10px;
     border-radius:30px;
     font-size:16px;
-    color:white;
+    font-weight:600;
     cursor:pointer;
     transition:0.3s;
-    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+.btn-confirmar{
+    background:#ffffff;
+    color:#ff4d88;
+}
+
+.btn-mapa{
+    background:#ff4d88;
+    color:white;
+}
+
+.btn-avisos{
+    background:#222;
+    color:white;
 }
 
 button:hover{
     transform:scale(1.05);
-    background:#ff1a8c;
 }
 
-.enviar{
-    background:#00cc66;
-}
+/* FORMULARIO */
 
-.enviar:hover{
-    background:#00994d;
-}
-
-/* Formularios */
-.formulario, .avisosBox{
-    margin-top:30px;
+.formulario, .avisos{
+    margin-top:25px;
     display:none;
-    animation:fade 0.5s ease-in-out;
+    animation:fadeIn 0.5s ease;
 }
 
 input{
-    display:block;
-    margin:10px auto;
+    width:100%;
     padding:12px;
-    width:260px;
+    margin-bottom:12px;
     border-radius:20px;
     border:none;
-    outline:none;
     text-align:center;
+    font-size:14px;
 }
 
-@keyframes fade{
-    from{opacity:0; transform:translateY(10px);}
-    to{opacity:1; transform:translateY(0);}
+.btn-enviar{
+    background:#00c853;
+    color:white;
 }
 
-@media(max-width:600px){
-    .titulo{font-size:40px;}
-    .nombre{font-size:50px;}
+/* AVISOS */
+
+.avisos{
+    font-size:15px;
+    line-height:1.6;
 }
+
+@media(max-width:500px){
+    .titulo{font-size:35px;}
+    .nombre{font-size:42px;}
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="titulo">15 AÑOS</div>
-<div class="nombre">AMY</div>
-<div class="fecha">SÁBADO 21 FEBRERO • 8PM</div>
+<div class="container">
 
-<div class="botones">
-    <button onclick="mostrarFormulario()">CONFIRMAR ASISTENCIA</button>
-    <button onclick="verUbicacion()">VER UBICACIÓN</button>
-    <button onclick="verAvisos()">AVISOS IMPORTANTES</button>
-</div>
+    <div class="titulo">15 AÑOS</div>
+    <div class="nombre">AMY</div>
+    <div class="fecha">SÁBADO 21 FEBRERO • 8PM</div>
 
-<!-- FORMULARIO -->
-<div class="formulario" id="formulario">
-    <input type="text" id="nombre" placeholder="Tu nombre">
-    <input type="text" id="familia" placeholder="Familia (opcional)">
-    <input type="tel" id="telefono" placeholder="Número de teléfono">
-    <button class="enviar" onclick="enviarWhatsApp()">Enviar Confirmación</button>
-</div>
+    <div class="botones">
+        <button class="btn-confirmar" onclick="mostrarFormulario()">CONFIRMAR ASISTENCIA</button>
+        <button class="btn-mapa" onclick="verUbicacion()">VER UBICACIÓN</button>
+        <button class="btn-avisos" onclick="mostrarAvisos()">AVISOS IMPORTANTES</button>
+    </div>
 
-<!-- AVISOS -->
-<div class="avisosBox" id="avisos">
-    🎉 Dress code elegante <br><br>
-    🚗 Parqueadero disponible <br><br>
-    ⏰ Puntualidad importante
+    <!-- FORMULARIO -->
+    <div class="formulario" id="formulario">
+        <input type="text" id="nombre" placeholder="Tu nombre">
+        <input type="text" id="familia" placeholder="Familia (opcional)">
+        <input type="tel" id="telefono" placeholder="Número de teléfono">
+        <button class="btn-enviar" onclick="enviarWhatsApp()">ENVIAR CONFIRMACIÓN</button>
+    </div>
+
+    <!-- AVISOS -->
+    <div class="avisos" id="avisos">
+        🎉 Dress code: Elegante <br><br>
+        🚗 Parqueadero disponible <br><br>
+        ⏰ Puntualidad importante <br><br>
+        💖 ¡Te esperamos!
+    </div>
+
 </div>
 
 <script>
@@ -147,22 +173,23 @@ function mostrarFormulario(){
     document.getElementById("avisos").style.display="none";
 }
 
-function verUbicacion(){
-    window.open("https://maps.google.com/?q=Quito,Ecuador","_blank");
-}
-
-function verAvisos(){
+function mostrarAvisos(){
     document.getElementById("avisos").style.display="block";
     document.getElementById("formulario").style.display="none";
 }
 
+function verUbicacion(){
+    window.open("https://maps.google.com/?q=Quito,Ecuador","_blank");
+}
+
 function enviarWhatsApp(){
+
     let nombre = document.getElementById("nombre").value.trim();
     let familia = document.getElementById("familia").value.trim();
     let telefono = document.getElementById("telefono").value.trim();
 
     if(nombre === "" || telefono === ""){
-        alert("Completa nombre y teléfono");
+        alert("Por favor completa nombre y teléfono");
         return;
     }
 
@@ -175,7 +202,7 @@ function enviarWhatsApp(){
 
     mensaje += `Teléfono: ${telefono}`;
 
-    let numeroDestino = "593981904174";
+    let numeroDestino = "593981811413";
 
     let url = `https://wa.me/${numeroDestino}?text=${mensaje}`;
 
