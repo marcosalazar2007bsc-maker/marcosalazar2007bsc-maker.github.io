@@ -1,1 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>15 Años Amy</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#5f2c82,#49a09d);
+    color:white;
+    text-align:center;
+}
+
+.titulo{
+    margin-top:60px;
+    font-size:55px;
+    font-weight:bold;
+}
+
+.nombre{
+    font-size:60px;
+    font-weight:700;
+    color:#ffd1ff;
+}
+
+.fecha{
+    margin-top:20px;
+    font-size:22px;
+}
+
+button{
+    background:#ff4da6;
+    border:none;
+    padding:15px 25px;
+    margin:10px;
+    border-radius:30px;
+    font-size:16px;
+    color:white;
+    cursor:pointer;
+}
+
+.formulario{
+    margin-top:20px;
+    display:none;
+}
+
+input{
+    display:block;
+    margin:10px auto;
+    padding:12px;
+    width:250px;
+    border-radius:20px;
+    border:none;
+    text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="titulo">15 AÑOS</div>
+<div class="nombre">AMY</div>
+<div class="fecha">SÁBADO 21 FEBRERO • 8PM</div>
+
+<button onclick="mostrarFormulario()">CONFIRMAR ASISTENCIA</button>
+
+<div class="formulario" id="formulario">
+    <input type="text" id="nombre" placeholder="Tu nombre">
+    <input type="text" id="familia" placeholder="Familia (opcional)">
+    <input type="tel" id="telefono" placeholder="Número de teléfono">
+    <button onclick="enviarWhatsApp()">Enviar Confirmación</button>
+</div>
+
+<script>
+function mostrarFormulario(){
+    document.getElementById("formulario").style.display="block";
+}
+
+function enviarWhatsApp(){
+    let nombre = document.getElementById("nombre").value;
+    let familia = document.getElementById("familia").value;
+    let telefono = document.getElementById("telefono").value;
+
+    if(nombre === "" || telefono === ""){
+        alert("Completa nombre y teléfono");
+        return;
+    }
+
+    let mensaje = `Hola, confirmo mi asistencia a tus 15 años, con cariño ${nombre}`;
+    if(familia !== ""){
+        mensaje += ` (${familia})`;
+    }
+
+    let numeroDestino = "593981811413";
+    let url = `https://wa.me/${numeroDestino}?text=${encode
 
